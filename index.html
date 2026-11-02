@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吳依珊工作室 | 平面設計・影片剪輯・動畫製作</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Zen Maru Gothic & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#FF85A1',
+                            yellow: '#FFD166',
+                            blue: '#4CC9F0',
+                            purple: '#7209B7',
+                            bg: '#FFF0F5',
+                            dark: '#2B2D42'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', 'Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(3deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: #FFF0F5;
+            color: #2B2D42;
+            overflow-x: hidden;
+        }
+        /* Locomotive style kinetic marquee */
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 1rem;
+        }
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 1rem;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+        /* Custom Hover & Interactive Effect */
+        .sticker-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .sticker-card:hover {
+            transform: translateY(-8px) scale(1.02) rotate(1.5deg);
+        }
+        .pop-btn {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .pop-btn:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0px 10px 25px -5px rgba(255, 133, 161, 0.5);
+        }
+        .pop-btn:active {
+            transform: scale(0.95);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF85A1;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="relative selection:bg-brand-yellow selection:text-brand-dark">
+
+    <!-- Sticky Floating Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full px-6 py-3 border-4 border-brand-dark shadow-[4px_4px_0px_0px_#2B2D42]">
+            <a href="#" class="text-xl md:text-2xl font-black text-brand-dark flex items-center gap-2">
+                <span class="w-8 h-8 rounded-full bg-brand-pink flex items-center justify-center text-white text-base animate-bounce-slow">✨</span>
+                吳依珊工作室
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-6 font-bold text-lg">
+                <a href="#services" class="hover:text-brand-pink transition-colors">服務項目</a>
+                <a href="#portfolio" class="hover:text-brand-pink transition-colors">精選作品</a>
+                <a href="#pricing" class="hover:text-brand-pink transition-colors">CP值優勢</a>
+                <a href="#contact" class="hover:text-brand-pink transition-colors">立即合作</a>
+            </nav>
+
+            <a href="#contact" class="pop-btn bg-brand-yellow text-brand-dark font-black px-5 py-2 rounded-full border-2 border-brand-dark shadow-[2px_2px_0px_0px_#2B2D42] text-sm md:text-base flex items-center gap-2">
+                <span>發案給我</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Locomotive Style Dynamic Kinetic Hero) -->
+    <section class="min-h-screen pt-32 pb-20 px-4 flex flex-col justify-center items-center relative overflow-hidden">
+        <!-- Floating Decorative Stickers -->
+        <div class="absolute top-24 left-10 text-4xl md:text-6xl animate-float opacity-80 pointer-events-none">🎨</div>
+        <div class="absolute top-1/3 right-12 text-5xl md:text-7xl animate-float opacity-80 pointer-events-none" style="animation-delay: 1s;">🎬</div>
+        <div class="absolute bottom-20 left-1/4 text-5xl md:text-6xl animate-float opacity-80 pointer-events-none" style="animation-delay: 2s;">✨</div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-block bg-brand-blue text-white font-extrabold px-6 py-2 rounded-full border-3 border-brand-dark shadow-[3px_3px_0px_0px_#2B2D42] mb-6 text-sm md:text-base transform -rotate-2">
+                ⚡ 全能型創作工具人！一人抵一家公司
+            </div>
+
+            <!-- Kinetic Massive Title -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-brand-dark leading-tight mb-8">
+                平面設計 <span class="inline-block bg-brand-pink text-white px-4 py-1 rounded-3xl transform rotate-3 border-4 border-brand-dark shadow-[4px_4px_0px_0px_#2B2D42]">影片剪輯</span><br>
+                動態動畫 <span class="text-brand-purple">一站幫你搞定！</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl font-bold text-gray-700 max-w-3xl mx-auto mb-10 leading-relaxed">
+                預算有限、時間很緊？別擔心！提供高品質、高CP值的全方位視覺方案，讓你的品牌爆發極致魅力 🚀
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#contact" class="pop-btn w-full sm:w-auto bg-brand-pink text-white text-xl font-black px-8 py-4 rounded-full border-4 border-brand-dark shadow-[5px_5px_0px_0px_#2B2D42] flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-comments text-2xl"></i>
+                    馬上預約免費諮詢
+                </a>
+                <a href="#portfolio" class="pop-btn w-full sm:w-auto bg-white text-brand-dark text-xl font-black px-8 py-4 rounded-full border-4 border-brand-dark shadow-[5px_5px_0px_0px_#2B2D42] flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-eye text-2xl"></i>
+                    瀏覽創作作品
+                </a>
+            </div>
+        </div>
+
+        <!-- Marquee Banner (Locomotive dynamic element) -->
+        <div class="w-full mt-20 bg-brand-dark text-white py-4 border-y-4 border-brand-dark transform -rotate-1 shadow-lg">
+            <div class="marquee-container text-xl md:text-2xl font-black uppercase tracking-wider">
+                <div class="marquee-content">
+                    <span>✨ GRAPHIC DESIGN</span> <span>・</span>
+                    <span>🎬 VIDEO EDITING</span> <span>・</span>
+                    <span>🎨 2D ANIMATION</span> <span>・</span>
+                    <span>💰 HIGH CP VALUE</span> <span>・</span>
+                    <span>🚀 FAST DELIVERY</span> <span>・</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span>✨ GRAPHIC DESIGN</span> <span>・</span>
+                    <span>🎬 VIDEO EDITING</span> <span>・</span>
+                    <span>🎨 2D ANIMATION</span> <span>・</span>
+                    <span>💰 HIGH CP VALUE</span> <span>・</span>
+                    <span>🚀 FAST DELIVERY</span> <span>・</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE FEATURES / WHY ME (多工且低價) -->
+    <section id="pricing" class="py-20 px-4 bg-white border-b-4 border-brand-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-black text-brand-dark mb-4">
+                    為什麼選擇 <span class="bg-brand-yellow px-3 py-1 rounded-xl border-2 border-brand-dark">吳依珊工作室？</span>
+                </h2>
+                <p class="text-lg md:text-xl font-bold text-gray-600">省去外包團隊溝通成本，給你最甜價格與最高效率！</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="sticker-card bg-brand-bg p-8 rounded-3xl border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-pink text-white text-3xl flex items-center justify-center border-2 border-brand-dark mb-6 shadow-[3px_3px_0px_0px_#2B2D42]">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-3">一人多功・完美跨界</h3>
+                    <p class="text-gray-700 font-bold leading-relaxed">
+                        不用分開找平面設計師、剪輯師、動畫師！我一人能包辦從社群貼文、主視覺到影片與動態特效的全套需求。
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="sticker-card bg-brand-yellow/30 p-8 rounded-3xl border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-yellow text-brand-dark text-3xl flex items-center justify-center border-2 border-brand-dark mb-6 shadow-[3px_3px_0px_0px_#2B2D42]">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-3">親民實惠・極致CP值</h3>
+                    <p class="text-gray-700 font-bold leading-relaxed">
+                        沒有大型代理商的繁雜溢價與行政開銷。預算靈活且平易近人，把每一分錢都精準轉化為高檔次的作品成果。
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="sticker-card bg-brand-blue/20 p-8 rounded-3xl border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-blue text-white text-3xl flex items-center justify-center border-2 border-brand-dark mb-6 shadow-[3px_3px_0px_0px_#2B2D42]">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-3">高效對接・快速交件</h3>
+                    <p class="text-gray-700 font-bold leading-relaxed">
+                        一對一直接對話，沒有多餘轉達落差。溝通順暢且回應迅速，精準掌握專案時程，急件救援沒問題！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES OFFERED -->
+    <section id="services" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-brand-purple font-black text-lg tracking-widest uppercase mb-2 block">Our Services</span>
+                <h2 class="text-4xl md:text-6xl font-black text-brand-dark">服務核心項目</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-white rounded-3xl p-8 border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42] flex flex-col justify-between hover:border-brand-pink transition-all">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-5xl">🖼️</span>
+                            <span class="bg-brand-pink text-white font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">GRAPHIC</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">平面設計</h3>
+                        <ul class="space-y-3 font-bold text-gray-700 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink"></i> 品牌視覺識別 (VI/Logo)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink"></i> 社群行銷圖文 / IG圖卡</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink"></i> 宣傳海報 / 傳單 / 排版</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-pink"></i> 電商 Banner / 產品詳情頁</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="pop-btn text-center bg-brand-bg text-brand-dark font-black py-3 rounded-xl border-2 border-brand-dark shadow-[2px_2px_0px_0px_#2B2D42]">詢問平面報價</a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-white rounded-3xl p-8 border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42] flex flex-col justify-between hover:border-brand-yellow transition-all">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-5xl">📹</span>
+                            <span class="bg-brand-yellow text-brand-dark font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">VIDEO</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">影片剪輯</h3>
+                        <ul class="space-y-3 font-bold text-gray-700 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-yellow"></i> Reels / Shorts 短影音剪輯</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-yellow"></i> YouTube 節目完整剪輯/字幕</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-yellow"></i> 活動記錄 / 宣傳花絮</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-yellow"></i> 音效搭配 & 綜藝字幕設計</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="pop-btn text-center bg-brand-bg text-brand-dark font-black py-3 rounded-xl border-2 border-brand-dark shadow-[2px_2px_0px_0px_#2B2D42]">詢問剪輯報價</a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-white rounded-3xl p-8 border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42] flex flex-col justify-between hover:border-brand-blue transition-all">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="text-5xl">✨</span>
+                            <span class="bg-brand-blue text-white font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">ANIMATION</span>
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">動畫製作</h3>
+                        <ul class="space-y-3 font-bold text-gray-700 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue"></i> 2D 動態元件 / MG動畫</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue"></i> Logo 開場 / 片頭特效</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue"></i> 產品說明動畫 (Explainer Video)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue"></i> 動態貼圖 / GIF 橫幅動畫</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="pop-btn text-center bg-brand-bg text-brand-dark font-black py-3 rounded-xl border-2 border-brand-dark shadow-[2px_2px_0px_0px_#2B2D42]">詢問動畫報價</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SHOWCASE (Interactive Filters) -->
+    <section id="portfolio" class="py-20 px-4 bg-white border-t-4 border-brand-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-brand-pink font-black text-lg uppercase tracking-widest block">Selected Works</span>
+                    <h2 class="text-4xl md:text-6xl font-black text-brand-dark">精選作品案例</h2>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2" id="filter-container">
+                    <button onclick="filterPortfolio('all')" class="filter-btn active bg-brand-dark text-white font-extrabold px-4 py-2 rounded-full border-2 border-brand-dark text-sm">全部作品</button>
+                    <button onclick="filterPortfolio('graphic')" class="filter-btn bg-white text-brand-dark font-extrabold px-4 py-2 rounded-full border-2 border-brand-dark text-sm hover:bg-brand-pink hover:text-white transition-colors">平面設計</button>
+                    <button onclick="filterPortfolio('video')" class="filter-btn bg-white text-brand-dark font-extrabold px-4 py-2 rounded-full border-2 border-brand-dark text-sm hover:bg-brand-yellow transition-colors">影片剪輯</button>
+                    <button onclick="filterPortfolio('animation')" class="filter-btn bg-white text-brand-dark font-extrabold px-4 py-2 rounded-full border-2 border-brand-dark text-sm hover:bg-brand-blue hover:text-white transition-colors">動畫製作</button>
+                </div>
+            </div>
+
+            <!-- Works Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+
+                <!-- Item 1: Graphic -->
+                <div class="portfolio-item graphic sticker-card bg-brand-bg rounded-3xl overflow-hidden border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="relative h-64 bg-gray-200 overflow-hidden">
+                        <img src="https://placehold.co/600x400/FF85A1/FFFFFF?text=Cute+Brand+Identity" alt="平面設計作品" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-pink text-white font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">平面設計</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-black mb-2">甜點品牌視覺識別包裝</h3>
+                        <p class="text-gray-600 font-bold text-sm">充滿童趣活潑質感的甜點視覺整合設計，包含貼紙、菜單與包裝外盒。</p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Video -->
+                <div class="portfolio-item video sticker-card bg-brand-bg rounded-3xl overflow-hidden border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="relative h-64 bg-gray-200 overflow-hidden">
+                        <img src="https://placehold.co/600x400/FFD166/2B2D42?text=Reels+Video+Editing" alt="影片剪輯作品" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-yellow text-brand-dark font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">影片剪輯</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-black mb-2">品牌 IG Reels 流行爆款短影音</h3>
+                        <p class="text-gray-600 font-bold text-sm">搭配快節奏卡點、活潑綜藝字幕與豐富音效，單支創造數萬觀看！</p>
+                    </div>
+                </div>
+
+                <!-- Item 3: Animation -->
+                <div class="portfolio-item animation sticker-card bg-brand-bg rounded-3xl overflow-hidden border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="relative h-64 bg-gray-200 overflow-hidden">
+                        <img src="https://placehold.co/600x400/4CC9F0/FFFFFF?text=2D+Motion+Graphics" alt="動畫製作作品" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-blue text-white font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">動畫製作</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-black mb-2">可愛吉祥物 2D 角色解說動畫</h3>
+                        <p class="text-gray-600 font-bold text-sm">將複雜產品說明簡化為親切易懂的 2D MG 動畫，提升用戶留存率。</p>
+                    </div>
+                </div>
+
+                <!-- Item 4: Graphic -->
+                <div class="portfolio-item graphic sticker-card bg-brand-bg rounded-3xl overflow-hidden border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="relative h-64 bg-gray-200 overflow-hidden">
+                        <img src="https://placehold.co/600x400/7209B7/FFFFFF?text=Social+Media+Post" alt="平面設計作品" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-purple text-white font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">平面設計</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-black mb-2">節慶社群行銷曝光懶人包</h3>
+                        <p class="text-gray-600 font-bold text-sm">吸引眼球的活潑配色與排版，大幅提升粉專互動與分享轉發。</p>
+                    </div>
+                </div>
+
+                <!-- Item 5: Video -->
+                <div class="portfolio-item video sticker-card bg-brand-bg rounded-3xl overflow-hidden border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="relative h-64 bg-gray-200 overflow-hidden">
+                        <img src="https://placehold.co/600x400/FF85A1/FFFFFF?text=YouTube+Vlog+Edit" alt="影片剪輯作品" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-pink text-white font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">影片剪輯</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-black mb-2">創作者 YouTube 開箱 Vlog 剪輯</h3>
+                        <p class="text-gray-600 font-bold text-sm">掌握順暢敘事節奏與趣味梗圖插卡，打造高留存率的影片內容。</p>
+                    </div>
+                </div>
+
+                <!-- Item 6: Animation -->
+                <div class="portfolio-item animation sticker-card bg-brand-bg rounded-3xl overflow-hidden border-4 border-brand-dark shadow-[6px_6px_0px_0px_#2B2D42]">
+                    <div class="relative h-64 bg-gray-200 overflow-hidden">
+                        <img src="https://placehold.co/600x400/FFD166/2B2D42?text=Logo+Animation" alt="動畫製作作品" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-yellow text-brand-dark font-extrabold text-xs px-3 py-1 rounded-full border border-brand-dark">動畫製作</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-black mb-2">品牌標誌動態開場動畫 (Logo Motion)</h3>
+                        <p class="text-gray-600 font-bold text-sm">為品牌打造極具印象點的動畫片頭，應用於各影音平台宣傳。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW SECTION -->
+    <section class="py-20 px-4 bg-brand-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-brand-dark mb-4">簡單 4 步驟 輕鬆開工</h2>
+                <p class="text-lg font-bold text-gray-600">清晰透明的合作流程，讓你發案超安心！</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-3xl border-4 border-brand-dark shadow-[4px_4px_0px_0px_#2B2D42] text-center">
+                    <span class="w-12 h-12 bg-brand-pink text-white rounded-full inline-flex items-center justify-center font-black text-xl mb-4 border-2 border-brand-dark">1</span>
+                    <h3 class="text-xl font-black mb-2">需求溝通</h3>
+                    <p class="text-gray-600 font-bold text-sm">透過 Line 或 Email 了解專案內容與預算範圍。</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border-4 border-brand-dark shadow-[4px_4px_0px_0px_#2B2D42] text-center">
+                    <span class="w-12 h-12 bg-brand-yellow text-brand-dark rounded-full inline-flex items-center justify-center font-black text-xl mb-4 border-2 border-brand-dark">2</span>
+                    <h3 class="text-xl font-black mb-2">報價與訂金</h3>
+                    <p class="text-gray-600 font-bold text-sm">確認報價細節並支付訂金後，安排時程正式開工。</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border-4 border-brand-dark shadow-[4px_4px_0px_0px_#2B2D42] text-center">
+                    <span class="w-12 h-12 bg-brand-blue text-white rounded-full inline-flex items-center justify-center font-black text-xl mb-4 border-2 border-brand-dark">3</span>
+                    <h3 class="text-xl font-black mb-2">初稿與修改</h3>
+                    <p class="text-gray-600 font-bold text-sm">提供初稿進行討論與修飾，確保符合視覺預期。</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border-4 border-brand-dark shadow-[4px_4px_0px_0px_#2B2D42] text-center">
+                    <span class="w-12 h-12 bg-brand-purple text-white rounded-full inline-flex items-center justify-center font-black text-xl mb-4 border-2 border-brand-dark">4</span>
+                    <h3 class="text-xl font-black mb-2">結案交件</h3>
+                    <p class="text-gray-600 font-bold text-sm">付清尾款後交付高品質無浮水印原始檔與相關素材。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM SECTION (主要轉換目的：給案子/聯繫我) -->
+    <section id="contact" class="py-20 px-4 bg-brand-yellow/30 border-t-4 border-brand-dark">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl p-8 md:p-12 border-4 border-brand-dark shadow-[8px_8px_0px_0px_#2B2D42] relative">
+                
+                <div class="text-center mb-10">
+                    <span class="bg-brand-pink text-white font-extrabold px-4 py-1 rounded-full border-2 border-brand-dark text-sm uppercase inline-block mb-3">Let's Work Together!</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-brand-dark">快把案子砸過來吧！</h2>
+                    <p class="text-gray-600 font-bold mt-2">填寫下表或透過下方聯繫方式，我會以最快速度回覆您 ✨</p>
+                </div>
+
+                <!-- Custom Alert Notification Box -->
+                <div id="status-message" class="hidden mb-6 p-4 rounded-2xl border-2 border-brand-dark font-extrabold text-center"></div>
+
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-brand-dark font-black mb-2" for="name">您的名字 / 寶號 *</label>
+                            <input type="text" id="name" required placeholder="例如：王小明" class="w-full px-5 py-3 rounded-2xl border-3 border-brand-dark focus:outline-none focus:ring-4 focus:ring-brand-pink font-bold">
+                        </div>
+                        <div>
+                            <label class="block text-brand-dark font-black mb-2" for="email">電子郵件 *</label>
+                            <input type="email" id="email" required placeholder="your.name@example.com" class="w-full px-5 py-3 rounded-2xl border-3 border-brand-dark focus:outline-none focus:ring-4 focus:ring-brand-pink font-bold">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-brand-dark font-black mb-2">需要的服務類型（可複選）*</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-2 bg-brand-bg p-3 rounded-xl border-2 border-brand-dark cursor-pointer font-bold hover:bg-brand-pink/20">
+                                <input type="checkbox" name="service" value="平面設計" class="w-5 h-5 accent-brand-pink">
+                                🖼️ 平面設計
+                            </label>
+                            <label class="flex items-center gap-2 bg-brand-bg p-3 rounded-xl border-2 border-brand-dark cursor-pointer font-bold hover:bg-brand-yellow/30">
+                                <input type="checkbox" name="service" value="影片剪輯" class="w-5 h-5 accent-brand-pink">
+                                🎬 影片剪輯
+                            </label>
+                            <label class="flex items-center gap-2 bg-brand-bg p-3 rounded-xl border-2 border-brand-dark cursor-pointer font-bold hover:bg-brand-blue/20">
+                                <input type="checkbox" name="service" value="動畫製作" class="w-5 h-5 accent-brand-pink">
+                                ✨ 動畫製作
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-brand-dark font-black mb-2" for="budget">預算範圍</label>
+                        <select id="budget" class="w-full px-5 py-3 rounded-2xl border-3 border-brand-dark focus:outline-none focus:ring-4 focus:ring-brand-pink font-bold bg-white">
+                            <option value="5,000 以下">NT$ 5,000 以下 (小資/微型需求)</option>
+                            <option value="5,000 - 15,000" selected>NT$ 5,000 - 15,000</option>
+                            <option value="15,000 - 30,000">NT$ 15,000 - 30,000</option>
+                            <option value="30,000 以上">NT$ 30,000 以上</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-brand-dark font-black mb-2" for="message">專案簡述與需求細節 *</label>
+                        <textarea id="message" rows="4" required placeholder="請簡單告訴我您的專案目標、交件時間或是參考範例連結..." class="w-full px-5 py-3 rounded-2xl border-3 border-brand-dark focus:outline-none focus:ring-4 focus:ring-brand-pink font-bold"></textarea>
+                    </div>
+
+                    <button type="submit" class="pop-btn w-full bg-brand-pink text-white text-xl font-black py-4 rounded-2xl border-4 border-brand-dark shadow-[4px_4px_0px_0px_#2B2D42] flex items-center justify-center gap-2">
+                        <span>傳送專案需求</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+                <!-- Direct Contact Info Badges -->
+                <div class="mt-10 pt-8 border-t-2 border-gray-200 flex flex-wrap justify-center gap-4 text-sm font-black">
+                    <a href="mailto:wuyishan.studio@gmail.com" class="flex items-center gap-2 bg-brand-bg px-4 py-2 rounded-full border-2 border-brand-dark hover:bg-white">
+                        <i class="fa-solid fa-envelope text-brand-pink"></i> wuyishan.studio@gmail.com
+                    </a>
+                    <a href="#" class="flex items-center gap-2 bg-brand-bg px-4 py-2 rounded-full border-2 border-brand-dark hover:bg-white">
+                        <i class="fa-brands fa-line text-green-500"></i> LINE ID: @yishan_design
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white py-12 px-4 border-t-4 border-brand-dark">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div>
+                <h3 class="text-2xl font-black mb-2">吳依珊工作室 Yishan Studio</h3>
+                <p class="text-gray-400 font-bold text-sm">多工・低價・高品質 | 平面設計・影片剪輯・動畫製作</p>
+            </div>
+            
+            <div class="flex gap-4 text-2xl">
+                <a href="#" class="w-10 h-10 rounded-full bg-white text-brand-dark flex items-center justify-center border-2 border-brand-dark hover:bg-brand-pink hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white text-brand-dark flex items-center justify-center border-2 border-brand-dark hover:bg-brand-yellow hover:text-brand-dark transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white text-brand-dark flex items-center justify-center border-2 border-brand-dark hover:bg-brand-blue hover:text-white transition-colors"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-8 pt-6 border-t border-gray-700 text-center text-xs font-bold text-gray-500">
+            © 2026 吳依珊工作室 All Rights Reserved. Designed with Playful Energy.
+        </div>
+    </footer>
+
+    <!-- INTERACTION LOGIC (Filtering & Form Handling) -->
+    <script>
+        // Portfolio Filtering Logic
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update Active Button Style
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-dark', 'text-white');
+                btn.classList.add('bg-white', 'text-brand-dark');
+            });
+            event.target.classList.remove('bg-white', 'text-brand-dark');
+            event.target.classList.add('bg-brand-dark', 'text-white');
+
+            // Filter Items
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Form Submit Logic (No alert used, custom status box)
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const messageBox = document.getElementById('status-message');
+
+            messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800');
+            messageBox.classList.add('bg-brand-yellow', 'text-brand-dark');
+            messageBox.innerHTML = `🎉 感謝 ${name} 的聯繫！訊息已成功傳送，我會盡快為您評估報價並回覆！`;
+
+            document.getElementById('contact-form').reset();
+
+            // Smooth scroll to message box
+            messageBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
